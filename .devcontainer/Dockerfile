@@ -1,4 +1,7 @@
-FROM althack/ros2:galactic-dev 
+FROM osrf/ros:humble-desktop
+
+# Set up user account
+RUN useradd -ms /bin/bash ros && echo "ros:ros" | chpasswd && adduser ros sudo
 
 # ** [Optional] Uncomment this section to install additional packages. **
 #
@@ -13,5 +16,5 @@ FROM althack/ros2:galactic-dev
 # ENV DEBIAN_FRONTEND=dialog
 
 # Set up auto-source of workspace for ros user
-ARG WORKSPACE
-RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc
+#ARG WORKSPACE
+#RUN echo "if [ -f ${WORKSPACE}/install/setup.bash ]; then source ${WORKSPACE}/install/setup.bash; fi" >> /home/ros/.bashrc

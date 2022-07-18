@@ -3,7 +3,7 @@ name: docs
 on:
   push:
     branches:
-      - "galactic"
+      - "humble"
   workflow_dispatch:
 
 jobs:
@@ -15,5 +15,5 @@ jobs:
       - name: Build and push docs
         uses: athackst/mkdocs-simple-plugin@v1.0.0
         with:
-          publish_branch: gh-pages-galactic
-          edit_uri: edit/galactic
+          publish_branch: gh-pages-humble
+          edit_uri: edit/humble
