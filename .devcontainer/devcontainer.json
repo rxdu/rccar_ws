@@ -13,9 +13,15 @@
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
-		"--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+                // GUI
+                "--runtime=nvidia",
+                "--env=DISPLAY",
+                "--env=QT_X11_NO_MITSHM=1",
+                "--volume=/tmp/.X11-unix:/tmp/.X11-unix"
 	],
-	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },
+	"containerEnv": { 
+                // "DISPLAY": "${localEnv:DISPLAY}" 
+        },
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.profiles.linux": {

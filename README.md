@@ -34,58 +34,54 @@ To remove a linter just delete it's name from this line:
           linter: [cppcheck, cpplint, uncrustify, lint_cmake, xmllint, flake8, pep257]
 ```
 
-## How to use this template
+## How to Setup
 
-### Prerequisites
+### Install Docker and Nvidia-Docker
 
-You should already have Docker and VSCode with the remote containers plugin installed on your system.
+* Follow [instructions to install docker](https://docs.docker.com/engine/install/ubuntu/)
 
-* [docker](https://docs.docker.com/engine/install/)
-* [vscode](https://code.visualstudio.com/)
-* [vscode remote containers plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+* Add your user to docker group to use docker without sudo (you need to restart the computer)
 
-### Get the template
+```
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+```
 
-Click on "use this template"
+* Follow [instructions to install nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
-![template_use](https://user-images.githubusercontent.com/6098197/91331899-43f23b80-e780-11ea-92c8-b4665ce126f1.png)
+```
+$ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+$ sudo apt-get update
+$ sudo apt-get install -y nvidia-docker2
+$ sudo systemctl restart docker
+```
 
-### Create your repository
+### Install VSCode plugin
 
-On the next dialog, name the repository you would like to start and decide if you want all of the branches, or just the latest LTS: Foxy.
+* Remote Development (by Microsoft)
 
-![template_new](https://user-images.githubusercontent.com/6098197/91332035-713ee980-e780-11ea-81d3-13b170f568b0.png)
+### Set up workspace
 
-Github will then create a new repository with the contents of this one in your account.  It grabs the latest changes as "initial commit".
+To create a new workspace:
 
-### Clone your repo
+```
+$ sudo apt install python3-vcstool
+$ cd ros2_ws_vscode
+$ vcs import src < ./ros2.repos --recursive
+```
 
-Now you can clone your repo as normal
+To update the repos:
 
-![template_download](https://user-images.githubusercontent.com/6098197/91332342-e4e0f680-e780-11ea-9525-49b0afa0e4bb.png)
+```
+$ vcs pull src
+```
 
-### Open it in vscode
+### Use the workspace
 
-Now that you've cloned your repo onto your computer, you can open it in VSCode (File->Open Folder). 
+Open VSCode from the "ros2_ws_vscode" folder, use "Ctrl + P" shortcut and type ">Remote-Containers: Rebuild Container" to build the docker image.
 
-When you open it for the first time, you should see a little popup that asks you if you would like to open it in a container.  Say yes!
-
-![template_vscode](https://user-images.githubusercontent.com/6098197/91332551-36898100-e781-11ea-9080-729964373719.png)
-
-If you don't see the pop-up, click on the little green square in the bottom left corner, which should bring up the container dialog
-
-![template_vscode_bottom](https://user-images.githubusercontent.com/6098197/91332638-5d47b780-e781-11ea-9fb6-4d134dbfc464.png)
-
-In the dialog, select "Remote Containers: Reopen in container"
-
-VSCode will build the dockerfile inside of `.devcontainer` for you.  If you open a terminal inside VSCode (Terminal->New Terminal), you should see that your username has been changed to `ros`, and the bottom left green corner should say "Dev Container"
-
-![template_container](https://user-images.githubusercontent.com/6098197/91332895-adbf1500-e781-11ea-8afc-7a22a5340d4a.png)
-
-
-### Update the template with your code
-
-1. Specify the repositories you want to include in your workspace in `src/ros2.repos` or delete `src/ros2.repos` and develop directly within the workspace.
-   1. If you are using a `ros2.repos` file, import the contents `Terminal->Run Task..->import from workspace file`
-2. Install dependencies `Terminal->Run Task..->install dependencies`
-3. Develop!
+Default username and password of the image is: ros:ros

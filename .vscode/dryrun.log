@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/rdu/RduWs/ros2_ws_vscode'
+make: Leaving directory '/home/rdu/RduWs/ros2_ws_vscode'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

@@ -3,4 +3,6 @@ install/*
 log/*
 site/*
 
+!src/.gitkeep
+src/*
 src/examples
