@@ -10,7 +10,9 @@
         "memory": "cpp",
         "future": "cpp",
         "istream": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "*.ipp": "cpp",
+        "iostream": "cpp"
 },
     "python.analysis.extraPaths": [
         "/opt/ros/humble/lib/python3.10/site-packages/"
