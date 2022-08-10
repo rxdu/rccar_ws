@@ -1,4 +1,4 @@
-FROM osrf/ros:humble-desktop
+FROM ros:humble
 
 # Set up user account
 RUN useradd -ms /bin/bash ros && echo "ros:ros" | chpasswd && adduser ros sudo
