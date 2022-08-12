@@ -4,9 +4,9 @@
 repositories:
   vesc_ros:
     type: git
-    url: git@github.com:rxdu/vesc_ros.git
-    version: ros2-humble
+    url: https://github.com/rxdu/vesc_ros.git
+    version: humble
   robosw:
     type: git
-    url: git@github.com:rxdu/robosw.git
-    version: feature-ros2
+    url: https://github.com/rxdu/robosw.git
+    version: devel
