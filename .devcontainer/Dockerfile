@@ -12,6 +12,7 @@ RUN sudo apt-get update && \
 RUN sudo apt-get install -y \
         libgl1-mesa-dev libglfw3-dev libcairo2-dev libtbb-dev libasio-dev \
         libboost-all-dev libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev
+RUN sudo apt-get install -y ros-humble-diagnostic-updater
 
 # Clean up
 RUN sudo apt-get autoremove -y \
