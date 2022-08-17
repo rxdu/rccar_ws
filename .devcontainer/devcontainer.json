@@ -8,7 +8,6 @@
 	},
 	"remoteUser": "ros",
 	"runArgs": [
-		"--network=host",
                 // This will allow you to use a ptrace-based debugger like C++, Go, and Rust.
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
@@ -17,7 +16,10 @@
                 "--runtime=nvidia",
                 "--env=DISPLAY",
                 "--env=QT_X11_NO_MITSHM=1",
-                "--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+                "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+                // Hardware
+                "--network=host",
+                "--device=/dev/input/js0"
 	],
 	"containerEnv": { 
                 // "DISPLAY": "${localEnv:DISPLAY}" 

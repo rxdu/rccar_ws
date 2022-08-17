@@ -7,12 +7,14 @@ RUN useradd -ms /bin/bash ros && echo "ros:ros" | chpasswd && adduser ros sudo
 ENV DEBIAN_FRONTEND=noninteractive
 RUN sudo apt-get update && \
         sudo apt-get -y install --no-install-recommends \
-        ros-humble-ackermann-msgs \
-        ros-humble-serial-driver
-RUN sudo apt-get install -y \
+        python3-pip \
         libgl1-mesa-dev libglfw3-dev libcairo2-dev libtbb-dev libasio-dev \
-        libboost-all-dev libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev
-RUN sudo apt-get install -y ros-humble-diagnostic-updater
+        libboost-all-dev libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev \
+        jstest-gtk
+RUN sudo apt-get install -y ros-humble-diagnostic-updater \
+        ros-humble-ackermann-msgs \
+        ros-humble-serial-driver \
+        ros-humble-joy-linux
 
 # Clean up
 RUN sudo apt-get autoremove -y \

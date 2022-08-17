@@ -2,10 +2,6 @@
 # See https://github.com/dirk-thomas/vcstool
 
 repositories:
-  vesc_ros:
-    type: git
-    url: https://github.com/rxdu/vesc_ros.git
-    version: humble
   robosw:
     type: git
     url: https://github.com/rxdu/robosw.git
