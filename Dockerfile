@@ -18,8 +18,7 @@ RUN sudo apt-get install -y ros-humble-diagnostic-updater \
 
 WORKDIR /ros2_ws
 COPY src /ros2_ws
-RUN bash -c "source /opt/ros/humble/setup.bash && \
-        colcon build --symlink-install"
+RUN bash -c "source /opt/ros/humble/setup.bash && colcon build"
 
 # Clean up
 RUN sudo apt-get autoremove -y \
