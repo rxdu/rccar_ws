@@ -2,14 +2,14 @@ version: '3'
 services:
   vesc_driver:
     privileged: true
-    # ipc: "shareable"
-    network_mode: "host"
     environment:
       - "ROS_DOMAIN_ID=0"
+    # ipc: "shareable"
+    network_mode: "host"
     devices: 
       - /dev/input/js0:/dev/input/js0
       # - /dev/shm:/dev/shm
-    image: "rxdu:rccar-ros2"
+    image: "rxdu/rccar:humble"
     logging:
         driver: "json-file"
         options:
@@ -20,13 +20,13 @@ services:
 
   rccar_teleop:
     privileged: true
-    ipc: "shareable"
     environment:
       - "ROS_DOMAIN_ID=0"
+    # ipc: "shareable"
     # network_mode: "host"
     # devices: 
     #   - /dev/shm:/dev/shm
-    image: "rxdu:rccar-ros2"
+    image: "rxdu/rccar:humble"
     logging:
         driver: "json-file"
         options:
