@@ -10,3 +10,7 @@ repositories:
     type: git
     url: https://github.com/rxdu/f1tenth_system.git
     version: humble
+  bluesea2:
+    type: git
+    url: git@github.com:rxdu/bluesea-ros2.git
+    version: main
