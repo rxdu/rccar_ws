@@ -32,30 +32,27 @@ builder_instance:
 _build_multiarch:
 	docker buildx build \
 		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
 		--output "type=image,push=true" \
 		--platform linux/amd64,linux/arm64 \
-		--builder multi-platform
+		--builder multi-platform \
 		-t ${target_image} \
 		. -f ${dockerfile}
 
 _build_arm64:
 	docker buildx build \
 		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
 		--output "type=image,push=true" \
 		--platform linux/arm64 \
-		--builder multi-platform
+		--builder multi-platform \
 		-t ${target_image} \
 		. -f ${dockerfile}
 
 _build_amd64:
 	docker buildx build \
 		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
 		--output "type=image,push=true" \
 		--platform linux/amd64 \
-		--builder multi-platform
+		--builder multi-platform \
 		-t ${target_image} \
 		. -f ${dockerfile}
 
@@ -68,11 +65,11 @@ jammy_humble_run:
 	${MAKE} _build_multiarch \
 	base_image=ubuntu:jammy-20220801 \
 	target_image=rxdu/ubuntu:run \
-	dockerfile=./base/Dockerfile.run
+	dockerfile=./Dockerfile.run
 
 .PHONY: jammy_humble_dev
 jammy_humble_dev: jammy_humble_run
 	${MAKE} _build_amd64 \
 	base_image=rxdu/ubuntu:run \
 	target_image=rxdu/ubuntu:dev \
-	dockerfile=./base/Dockerfile.dev
+	dockerfile=./Dockerfile.dev

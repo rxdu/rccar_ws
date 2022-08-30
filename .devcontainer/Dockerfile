@@ -1,4 +1,4 @@
-FROM ros:humble
+FROM rxdu/ubuntu:dev
 
 # Set up user account
 RUN useradd -ms /bin/bash ros && echo "ros:ros" | chpasswd && adduser ros sudo
