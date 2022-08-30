@@ -1,0 +1,28 @@
+ARG BASE_IMAGE
+FROM $BASE_IMAGE
+
+######################################
+# Ubuntu
+######################################
+
+# arguments
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ=Asia/Singapore
+
+# system upgrade
+RUN apt-get -y update
+
+######################################
+# Additional packages for development
+######################################
+
+# install ros2 packages
+RUN apt-get install -y ros-$ROS_DISTRO_NAME-ros-desktop-full
+
+# clenaup intallation
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+######################################
+
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
