@@ -15,37 +15,6 @@
 all: jammy_humble_run jammy_humble_dev
 
 ###############################################
-# commands
-###############################################
-
-_build_multiarch:
-	docker buildx build \
-		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
-		--output "type=image,push=true" \
-		--platform linux/amd64,linux/arm64 \
-		-t ${target_image} \
-		. -f ${dockerfile}
-
-_build_arm64:
-	docker buildx build \
-		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
-		--output "type=image,push=true" \
-		--platform linux/arm64 \
-		-t ${target_image} \
-		. -f ${dockerfile}
-
-_build_amd64:
-	docker buildx build \
-		--build-arg BASE_IMAGE=$(base_image) \
-		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
-		--output "type=image,push=true" \
-		--platform linux/amd64 \
-		-t ${target_image} \
-		. -f ${dockerfile}
-
-###############################################
 # create builder instance
 ###############################################
 
@@ -56,6 +25,39 @@ builder_instance:
     --platform linux/amd64,linux/arm64 \
     --driver docker-container
 
+###############################################
+# commands
+###############################################
+
+_build_multiarch:
+	docker buildx build \
+		--build-arg BASE_IMAGE=$(base_image) \
+		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
+		--output "type=image,push=true" \
+		--platform linux/amd64,linux/arm64 \
+		--builder multi-platform
+		-t ${target_image} \
+		. -f ${dockerfile}
+
+_build_arm64:
+	docker buildx build \
+		--build-arg BASE_IMAGE=$(base_image) \
+		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
+		--output "type=image,push=true" \
+		--platform linux/arm64 \
+		--builder multi-platform
+		-t ${target_image} \
+		. -f ${dockerfile}
+
+_build_amd64:
+	docker buildx build \
+		--build-arg BASE_IMAGE=$(base_image) \
+		--build-arg ROS_DISTRO_NAME=$(ros_dist) \
+		--output "type=image,push=true" \
+		--platform linux/amd64 \
+		--builder multi-platform
+		-t ${target_image} \
+		. -f ${dockerfile}
 
 ###############################################
 # build and push image
