@@ -6,22 +6,32 @@ on:
   workflow_dispatch:
     
 jobs:
-  test:
+  build-rccar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - 
+        name: Setup SSH and clone submodules
+        env:
+          GITHUB_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+          GITHUB_SSH_KEY: ${{ secrets.RDU_SSH_KEY }}
+        run: |   
+          mkdir -p $HOME/.ssh
+          echo ${GITHUB_HOST_KEY} >> $HOME/.ssh/known_hosts
+          echo "${GITHUB_SSH_KEY}" > $HOME/.ssh/id_rsa        
+          chmod 600 $HOME/.ssh/id_rsa        
+          git config --global --add safe.directory ${GITHUB_WORKSPACE}        
+          export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+          cd ${GITHUB_WORKSPACE} && git submodule update --init --recursive
+          mkdir src
+          vcs import --skip-existing --recursive src < rccar_ros2.repos
+          unset GIT_SSH_COMMAND
       - name: Test
         run: |
           docker build -t $GITHUB_REPOSITORY -f ./.devcontainer/Dockerfile .
           docker run -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE -w $GITHUB_WORKSPACE $GITHUB_REPOSITORY \
-          bash -c "
-          mkdir -p src \
-          && vcs import --recursive --skip-existing src < ros2.repos \
-          && apt-get update \
-          && colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' -Wall -Wextra -Wpedantic \
-          && colcon test \
-          "
+          bash -c "colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'"
   # lint:
   #   name: ament_${{ matrix.linter }}
   #   runs-on: ubuntu-latest

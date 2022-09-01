@@ -4,11 +4,11 @@
 repositories:
   robosw:
     type: git
-    url: https://github.com/rxdu/robosw.git
+    url: git@github.com:rxdu/robosw.git
     version: devel
   f1tenth:
     type: git
-    url: https://github.com/rxdu/f1tenth_system.git
+    url: git@github.com:rxdu/f1tenth_system.git
     version: humble
   bluesea2:
     type: git
