@@ -37,7 +37,7 @@ $ sudo systemctl restart docker
 To create a new workspace:
 
 ```
-$ sudo apt install python3-vcstool
+$ sudo apt install python3-vcstools
 $ cd ros2_ws_vscode
 $ vcs import src < ./ros2.repos --recursive
 ```

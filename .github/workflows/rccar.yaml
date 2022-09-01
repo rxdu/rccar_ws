@@ -14,8 +14,9 @@ jobs:
       - 
         name: Install tools
         run: |
+          curl -s https://packagecloud.io/install/repositories/dirk-thomas/vcstool/script.deb.sh | sudo bash
           sudo apt-get update
-          sudo apt-get install python3-vcstools
+          sudo apt-get install python3-vcstool
       - 
         name: Setup SSH and clone submodules
         env:
@@ -30,6 +31,7 @@ jobs:
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
           cd ${GITHUB_WORKSPACE} && git submodule update --init --recursive
           mkdir src
+          source /usr/share/vcstool-completion/vcs.bash
           vcs import --skip-existing --recursive src < rccar_ros2.repos
           unset GIT_SSH_COMMAND
       - 
