@@ -2,6 +2,10 @@
 # See https://github.com/dirk-thomas/vcstool
 
 repositories:
+  autocar:
+    type: git
+    url: git@github.com:rxdu/autocar.git
+    version: main
   robosw:
     type: git
     url: git@github.com:rxdu/robosw.git
