@@ -15,24 +15,24 @@ services:
         options:
             max-file: "5"
             max-size: "10m"
-    command: ros2 launch f1tenth_stack bringup_driver.py
+    command: ros2 launch f1tenth_stack bringup_vesc.py
     restart: unless-stopped
 
-  # rccar_teleop:
-  #   privileged: true
-  #   environment:
-  #     - "ROS_DOMAIN_ID=0"
-  #   # ipc: "shareable"
-  #   # network_mode: "host"
-  #   # devices: 
-  #   #   - /dev/shm:/dev/shm
-  #   image: "rxdu/rccar:humble"
-  #   logging:
-  #       driver: "json-file"
-  #       options:
-  #           max-file: "5"
-  #           max-size: "10m"
-  #   command: ros2 launch f1tenth_stack bringup_teleop.py
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - "vesc_driver"
+  rccar_teleop:
+    privileged: true
+    environment:
+      - "ROS_DOMAIN_ID=0"
+    # ipc: "shareable"
+    # network_mode: "host"
+    # devices: 
+    #   - /dev/shm:/dev/shm
+    image: "rxdu/rccar:humble"
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "5"
+            max-size: "10m"
+    command: ros2 launch f1tenth_stack bringup_teleop.py
+    restart: unless-stopped
+    depends_on:
+      - "vesc_driver"
