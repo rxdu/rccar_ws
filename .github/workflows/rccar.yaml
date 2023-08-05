@@ -4,25 +4,29 @@ on:
   pull_request:
   push:
   workflow_dispatch:
-    
+
 jobs:
   build-rccar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - 
-        name: Install tools
+      - name: Install tools
         run: |
           curl -s https://packagecloud.io/install/repositories/dirk-thomas/vcstool/script.deb.sh | sudo bash
           sudo apt-get update
           sudo apt-get install python3-vcstool
-      - 
-        name: Setup SSH and clone submodules
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev \
+               libglfw3-dev libcairo2-dev libtbb-dev libasio-dev libboost-all-dev \
+               libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev \
+               libncurses-dev libevdev-dev
+      - name: Setup SSH and clone submodules
         env:
           GITHUB_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
           GITHUB_SSH_KEY: ${{ secrets.RDU_SSH_KEY }}
-        run: |   
+        run: |
           mkdir -p $HOME/.ssh
           echo ${GITHUB_HOST_KEY} >> $HOME/.ssh/known_hosts
           echo "${GITHUB_SSH_KEY}" > $HOME/.ssh/id_rsa        
@@ -34,13 +38,12 @@ jobs:
           source /usr/share/vcstool-completion/vcs.bash
           vcs import --skip-existing --recursive src < rccar_ros2.repos
           unset GIT_SSH_COMMAND
-      - 
-        name: Build workspace
+      - name: Build workspace
         run: |
           docker build -t $GITHUB_REPOSITORY -f ./.devcontainer/Dockerfile .
           docker run -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE -w $GITHUB_WORKSPACE $GITHUB_REPOSITORY \
           bash -c "colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'"
-          
+
   # lint:
   #   name: ament_${{ matrix.linter }}
   #   runs-on: ubuntu-latest
