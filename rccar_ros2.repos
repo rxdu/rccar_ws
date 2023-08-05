@@ -6,14 +6,10 @@ repositories:
     type: git
     url: git@github.com:rxdu/autocar.git
     version: main
-  robosw:
+  xmotion:
     type: git
-    url: git@github.com:rxdu/robosw.git
+    url: git@github.com:rxdu/libxmotion.git
     version: devel
-  f1tenth:
-    type: git
-    url: git@github.com:rxdu/f1tenth_system.git
-    version: humble
   bluesea2:
     type: git
     url: git@github.com:rxdu/bluesea-ros2.git

@@ -103,7 +103,7 @@
     "C_Cpp.formatting": "Disabled",
     "uncrustify.configPath.linux": "/opt/ros/humble/lib/python3.8/site-packages/ament_uncrustify/configuration/ament_code_style.cfg",
     "[cpp]": {
-        "editor.defaultFormatter": "zachflower.uncrustify"
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "search.exclude": {
         "**/node_modules": true,
