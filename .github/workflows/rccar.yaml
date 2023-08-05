@@ -16,12 +16,6 @@ jobs:
           curl -s https://packagecloud.io/install/repositories/dirk-thomas/vcstool/script.deb.sh | sudo bash
           sudo apt-get update
           sudo apt-get install python3-vcstool
-      - name: Install dependencies
-        run: |
-          sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev \
-               libglfw3-dev libcairo2-dev libtbb-dev libasio-dev libboost-all-dev \
-               libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev \
-               libncurses-dev libncurses5-dev libevdev-dev
       - name: Setup SSH and clone submodules
         env:
           GITHUB_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}

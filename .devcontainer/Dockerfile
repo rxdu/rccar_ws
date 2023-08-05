@@ -10,6 +10,7 @@ RUN sudo apt-get update && \
         python3-pip \
         libgl1-mesa-dev libglfw3-dev libcairo2-dev libtbb-dev libasio-dev \
         libboost-all-dev libgsl-dev libeigen3-dev libtbb-dev libopencv-dev libyaml-cpp-dev \
+        libncurses-dev libncurses5-dev libevdev-dev \
         jstest-gtk gnome-nettool can-utils \
         valgrind gdb
 RUN sudo apt-get install -y ros-humble-diagnostic-updater \
