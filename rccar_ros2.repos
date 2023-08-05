@@ -9,7 +9,7 @@ repositories:
   xmotion:
     type: git
     url: git@github.com:rxdu/libxmotion.git
-    version: devel
+    version: feature-rccar_support
   bluesea2:
     type: git
     url: git@github.com:rxdu/bluesea-ros2.git
