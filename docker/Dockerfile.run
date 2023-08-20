@@ -68,7 +68,7 @@ COPY ./ros_entrypoint.sh /
 # install conan
 RUN python3 -m pip install setuptools && \
     python3 -m pip install markupsafe && \
-    python3 -m pip install conan && conan user
+    python3 -m pip install conan==1.59 && conan user
 
 # update cmake
 RUN ARCH=$(uname -m) && \

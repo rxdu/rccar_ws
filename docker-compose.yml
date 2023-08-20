@@ -1,30 +1,31 @@
 version: '3'
 services:
-  bringup_driver:
-    privileged: true
-    environment:
-      - "ROS_DOMAIN_ID=0"
-    # ipc: "shareable"
-    network_mode: "host"
-    devices: 
-      - /dev/input/js0:/dev/input/js0
-      # - /dev/shm:/dev/shm
-    image: "rxdu/rccar:humble"
-    logging:
-        driver: "json-file"
-        options:
-            max-file: "5"
-            max-size: "10m"
-    command: ros2 launch f1tenth_stack bringup_driver.py
-    restart: unless-stopped
+  # bringup_driver:
+  #   privileged: true
+  #   environment:
+  #     - "ROS_DOMAIN_ID=0"
+  #   # ipc: "shareable"
+  #   network_mode: "host"
+  #   devices: 
+  #     - /dev/input/js0:/dev/input/js0
+  #     # - /dev/shm:/dev/shm
+  #   image: "rxdu/rccar:humble"
+  #   logging:
+  #       driver: "json-file"
+  #       options:
+  #           max-file: "5"
+  #           max-size: "10m"
+  #   command: ros2 launch f1tenth_stack bringup_driver.py
+  #   restart: unless-stopped
 
   rccar_teleop:
     privileged: true
     environment:
       - "ROS_DOMAIN_ID=0"
     # ipc: "shareable"
-    # network_mode: "host"
-    # devices: 
+    network_mode: "host"
+    devices: 
+      - /dev/input/*:/dev/input/*
     #   - /dev/shm:/dev/shm
     image: "rxdu/rccar:humble"
     logging:
@@ -32,7 +33,7 @@ services:
         options:
             max-file: "5"
             max-size: "10m"
-    command: ros2 launch f1tenth_stack bringup_teleop.py
+    command: ros2 launch autocar_teleop js_teleop.launch.py
     restart: unless-stopped
-    depends_on:
-      - "bringup_driver"
+    # depends_on:
+    #   - "bringup_driver"

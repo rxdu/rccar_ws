@@ -63,7 +63,7 @@ _build_amd64:
 .PHONY: jammy_humble_run
 jammy_humble_run:
 	${MAKE} _build_multiarch \
-	base_image=ubuntu:jammy-20220801 \
+	base_image=ubuntu:jammy-20230804 \
 	target_image=rxdu/ubuntu:run \
 	dockerfile=./Dockerfile.run
 
