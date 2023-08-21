@@ -1,8 +1,7 @@
 [Unit]
 Description=autonomous RC car
-Requires=network-online.target docker.service dev-input-js0.device
-After=docker.service network-online.target dev-input-js0.device
-StartLimitIntervalSec=0
+Requires=network-online.target docker.service bluetooth.target
+After=docker.service network-online.target bluetooth.target
 
 [Service]
 User=root
@@ -11,7 +10,6 @@ WorkingDirectory=/home/rdu/Workspace/ros2_ws
 ExecStart=/usr/local/bin/docker-compose up
 ExecStop=/usr/local/bin/docker-compose down
 Restart=always
-RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
