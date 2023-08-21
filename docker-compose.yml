@@ -27,6 +27,8 @@ services:
     devices: 
       - /dev/input/*:/dev/input/*
     #   - /dev/shm:/dev/shm
+    volumes:
+      - /home/rdu/Workspace/rccar_ws/src:/ros2_ws/src
     image: "rxdu/rccar:humble"
     logging:
         driver: "json-file"
