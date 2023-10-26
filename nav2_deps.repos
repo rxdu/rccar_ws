@@ -1,0 +1,37 @@
+repositories:
+  vision_opencv:
+    type: git
+    url: https://github.com/ros-perception/vision_opencv.git
+    version: humble
+  angles:
+    type: git
+    url: https://github.com/ros/angles.git
+    version: ros2
+  gazebo_ros_pkgs:
+    type: git
+    url: https://github.com/ros-simulation/gazebo_ros_pkgs.git
+    version: ros2
+  slam_toolbox:
+    type: git
+    url: https://github.com/SteveMacenski/slam_toolbox.git
+    version: humble
+  ompl:
+    type: git
+    url: https://github.com/ompl/ompl.git
+    version: 1.5.2
+  behaviortree_cpp_v3:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.CPP.git
+    version: v3.8
+  bond:
+    type: git
+    url: https://github.com/ros/bond_core.git
+    version: ros2
+  diagnostics:
+    type: git
+    url: https://github.com/ros/diagnostics.git
+    version: ros2
+  xsimd:
+    type: git
+    url: https://github.com/xtensor-stack/xsimd.git
+    version: 11.1.0

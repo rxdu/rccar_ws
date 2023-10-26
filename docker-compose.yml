@@ -35,7 +35,7 @@ services:
         options:
             max-file: "5"
             max-size: "10m"
-    command: ros2 launch autocar_teleop js_teleop.launch.py
+    command: ros2 launch autocar_bringup js_teleop.launch.py 
     restart: unless-stopped
     # depends_on:
     #   - "bringup_driver"
