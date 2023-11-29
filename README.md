@@ -39,9 +39,22 @@ $ sudo systemctl restart docker
 To create a new workspace:
 
 ```
-$ sudo apt install python3-vcstools
+$ sudo apt install python3-vcstools 
+$ sudo apt purge python3.9*
+$ sudo apt install libsuitesparse-dev libgraphicsmagick++1-dev libceres-dev xtl-dev
 $ cd ros2_ws_vscode
 $ vcs import src < ./ros2.repos --recursive
+$ mkdir -p src/deps
+$ vcs import src/deps < ./nav2.humble.deps.rosinstall
+```
+
+Generate navigation2 dependent packages
+
+```
+$ sudo apt install python3-rosinstall-generator
+$ rosinstall_generator --deps --exclude RPP --rosdistro ${ROS_DISTRO} \
+    `rosdep keys --ignore-src --rosdistro ${ROS_DISTRO} --from-paths src --skip-keys="libopencv-dev libopencv-contrib-dev libopencv-imgproc-dev python-opencv python3-opencv"` \
+    > nav2.${ROS_DISTRO}.deps.rosinstall
 ```
 
 To update the repos:

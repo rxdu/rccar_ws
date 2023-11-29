@@ -1,0 +1,57 @@
+- git:
+    local-name: angles
+    uri: https://github.com/ros2-gbp/angles-release.git
+    version: release/humble/angles/1.15.0-1
+- git:
+    local-name: behaviortree_cpp_v3
+    uri: https://github.com/BehaviorTree/behaviortree_cpp_v3-release.git
+    version: release/humble/behaviortree_cpp_v3/3.8.5-1
+- git:
+    local-name: bond_core/bond
+    uri: https://github.com/ros2-gbp/bond_core-release.git
+    version: release/humble/bond/3.0.2-3
+- git:
+    local-name: bond_core/bondcpp
+    uri: https://github.com/ros2-gbp/bond_core-release.git
+    version: release/humble/bondcpp/3.0.2-3
+- git:
+    local-name: bond_core/smclib
+    uri: https://github.com/ros2-gbp/bond_core-release.git
+    version: release/humble/smclib/3.0.2-3
+- git:
+    local-name: diagnostics/diagnostic_updater
+    uri: https://github.com/ros2-gbp/diagnostics-release.git
+    version: release/humble/diagnostic_updater/3.1.2-1
+- git:
+    local-name: gazebo_ros_pkgs/gazebo_dev
+    uri: https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git
+    version: release/humble/gazebo_dev/3.7.0-1
+- git:
+    local-name: gazebo_ros_pkgs/gazebo_msgs
+    uri: https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git
+    version: release/humble/gazebo_msgs/3.7.0-1
+- git:
+    local-name: gazebo_ros_pkgs/gazebo_plugins
+    uri: https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git
+    version: release/humble/gazebo_plugins/3.7.0-1
+- git:
+    local-name: gazebo_ros_pkgs/gazebo_ros
+    uri: https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git
+    version: release/humble/gazebo_ros/3.7.0-1
+- git:
+    local-name: gazebo_ros_pkgs/gazebo_ros_pkgs
+    uri: https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git
+    version: release/humble/gazebo_ros_pkgs/3.7.0-1
+- git:
+    local-name: ompl
+    uri: https://github.com/ros2-gbp/ompl-release.git
+    version: release/humble/ompl/1.6.0-1
+- git:
+    local-name: slam_toolbox
+    uri: https://github.com/SteveMacenski/slam_toolbox-release.git
+    version: release/humble/slam_toolbox/2.6.6-1
+- git:
+    local-name: vision_opencv/cv_bridge
+    uri: https://github.com/ros2-gbp/vision_opencv-release.git
+    version: release/humble/cv_bridge/3.2.1-1
+
