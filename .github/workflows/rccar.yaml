@@ -31,6 +31,8 @@ jobs:
           mkdir src
           source /usr/share/vcstool-completion/vcs.bash
           vcs import --skip-existing --recursive src < rccar_ros2.repos
+          mkdir -p src/deps
+          vcs import src/deps < ./nav2.humble.deps.rosinstall
           unset GIT_SSH_COMMAND
       - name: Build workspace
         run: |
